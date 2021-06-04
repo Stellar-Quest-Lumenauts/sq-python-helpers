@@ -1,7 +1,6 @@
-import os
 import requests
 
-def fund_using_friendbot(public_key):
+def fund_using_friendbot(public_key: str) -> requests.Response:
     # First, check if the account already exists on the testnet
     check_url = f"https://horizon-testnet.stellar.org/accounts/{public_key}"
     r = requests.get(check_url)
@@ -10,3 +9,4 @@ def fund_using_friendbot(public_key):
         url = 'https://friendbot.stellar.org'
         response = requests.get( url, params={'addr': public_key} )
         response.raise_for_status()
+        return response
